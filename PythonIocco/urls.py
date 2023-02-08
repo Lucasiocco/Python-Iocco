@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from AppIocco.views import inicio, personajes
+from AppIocco.views import inicio, personajes, armas
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("inicio/", inicio),
     path("personajes/", personajes),
+    path("armas/", armas)
 ]

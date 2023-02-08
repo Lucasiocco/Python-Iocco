@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from AppIocco.models import Personaje
+from AppIocco.models import Personaje, Arma
 
 # Create your views here.
 
 def inicio(request):
 
-    return HttpResponse("Bienvenido/a.")
+    return render(request, "AppIocco/index.html")
 
 def personajes(request):
 
@@ -14,5 +14,18 @@ def personajes(request):
     personaje1.save()
     personaje2 = Personaje(nombre="Bangalore", clase="Asesina", genero="Femenino")
     personaje2.save()
+    personaje3 = Personaje(nombre="Bloodhound", clase="Cazador", genero="Masculino")
+    personaje3.save()
 
-    return HttpResponse("Personajes")
+    return render(request, "AppIocco/personajes.html")
+
+def armas(request):
+
+    arma1 = Arma(nombre="R99", clase="Subfusil", municion="Liviana")
+    arma1.save()
+    arma2 = Arma(nombre="Peacekeeper", clase="Escopeta", municion="Pesada")
+    arma2.save()
+    arma3 = Arma(nombre="Flatline", clase="Fusil", municion="Media")
+    arma3.save()
+
+    return HttpResponse("Armas")

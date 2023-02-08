@@ -13,3 +13,9 @@ class Personaje(models.Model):
     nombre = models.CharField(max_length=10)
     clase = models.CharField(max_length=10)
     genero = models.CharField(max_length=10)
+
+class Arma(models.Model):
+
+    nombre = models.CharField(max_length=15)
+    clase = models.CharField(max_length=15)
+    municion = models.CharField(max_length=15)
