@@ -8,7 +8,7 @@ def inicio(request):
 
     return render(request, "AppIocco/index.html")
 
-def personajes(request):
+def ver_personajes(request):
 
     personaje1 = Personaje(nombre="Lifeline", clase="Soporte", genero="Femenino")
     personaje1.save()
@@ -19,7 +19,7 @@ def personajes(request):
 
     return render(request, "AppIocco/personajes.html")
 
-def armas(request):
+def ver_armas(request):
 
     arma1 = Arma(nombre="R99", clase="Subfusil", municion="Liviana")
     arma1.save()
@@ -28,4 +28,4 @@ def armas(request):
     arma3 = Arma(nombre="Flatline", clase="Fusil", municion="Media")
     arma3.save()
 
-    return HttpResponse("Armas")
+    return render(request, "AppIocco/armas.html")
