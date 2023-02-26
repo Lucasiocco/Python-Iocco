@@ -10,9 +10,9 @@ class Usuario(models.Model):
 
 class Personaje(models.Model):
 
-    nombre = models.CharField(max_length=10)
-    clase = models.CharField(max_length=10)
-    genero = models.CharField(max_length=10)
+    nombre = models.CharField(max_length=15)
+    clase = models.CharField(max_length=15)
+    genero = models.CharField(max_length=15)
 
 class Arma(models.Model):
 

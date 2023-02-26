@@ -10,25 +10,19 @@ def inicio(request):
 
 def ver_personajes(request):
 
-    personaje1 = Personaje(nombre="Lifeline", clase="Soporte", genero="Femenino")
-    personaje1.save()
-    personaje2 = Personaje(nombre="Bangalore", clase="Asesina", genero="Femenino")
-    personaje2.save()
-    personaje3 = Personaje(nombre="Bloodhound", clase="Cazador", genero="Masculino")
-    personaje3.save()
+    listaPersonajes = Personaje.objects.all
 
-    return render(request, "AppIocco/personajes.html")
+    return render(request, "AppIocco/personajes.html", {"listaPersonajes":listaPersonajes})
 
 def ver_armas(request):
 
-    arma1 = Arma(nombre="R99", clase="Subfusil", municion="Liviana")
-    arma1.save()
-    arma2 = Arma(nombre="Peacekeeper", clase="Escopeta", municion="Pesada")
-    arma2.save()
-    arma3 = Arma(nombre="Flatline", clase="Fusil", municion="Media")
-    arma3.save()
+    listaArmas = Arma.objects.all
 
-    return render(request, "AppIocco/armas.html")
+    return render(request, "AppIocco/armas.html", {"listaArmas":listaArmas})
+
+def ver_usuario(request):
+
+    return render(request, "AppIocco/usuario.html")
 
 def crear_usuario(request):
 
@@ -40,4 +34,4 @@ def crear_usuario(request):
 
     return render(request, "AppIocco/usuario.html")
 
-     
+    
