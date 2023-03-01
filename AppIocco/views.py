@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from AppIocco.models import Personaje, Arma, Usuario
+from AppIocco.models import *
+from django.views.generic import ListView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login, authenticate
 
 # Create your views here.
 
@@ -8,30 +12,61 @@ def inicio(request):
 
     return render(request, "AppIocco/index.html")
 
-def ver_personajes(request):
-
-    listaPersonajes = Personaje.objects.all
-
-    return render(request, "AppIocco/personajes.html", {"listaPersonajes":listaPersonajes})
-
-def ver_armas(request):
-
-    listaArmas = Arma.objects.all
-
-    return render(request, "AppIocco/armas.html", {"listaArmas":listaArmas})
-
-def ver_usuario(request):
-
-    return render(request, "AppIocco/usuario.html")
-
-def crear_usuario(request):
+def registro(request):
 
     if request.method == "POST":
 
-        usuario = Usuario (nombre = request.POST["nombre"], contraseña = request.POST["contraseña"], email = request.POST["email"])
+        miFormulario = UserCreationForm(request.POST)
 
-        usuario.save()
+        if miFormulario.is_valid():
+
+            miFormulario.save()
+
+            return render(request, "AppIocco/index.html")
+    
+    else:
+
+        miFormulario = UserCreationForm()
+
+    return render(request, "AppIocco/autentificacion/resgistro.html", {"miFormulario":miFormulario})
+
+def usuario(request):
 
     return render(request, "AppIocco/usuario.html")
 
+
+
+
+class ArmaLista(ListView):
+    model = Arma
+
+class ArmaCrear(CreateView):
+    model = Arma
+    fields = ["nombre", "clase", "municion"]
+    success_url = "/AppIocco/arma_form.html"
+
+class ArmaBorrar(DeleteView):
+    model = Arma
+    success_url = "/AppIocco/arma_confirm_delete.html"
+
+class ArmaEditar(UpdateView):
+    model = Personaje
+    fields = ["nombre", "clase", "municion"]
+    success_url = "/AppIocco/arma_list.html"
     
+class PersonajeLista(ListView):
+    model = Personaje
+
+class PersonajeCrear(CreateView):
+    model = Personaje
+    fields = ["nombre", "clase", "genero"]
+    success_url = "/AppIocco/personaje_form.html"
+
+class PersonajeBorrar(DeleteView):
+    model = Personaje
+    success_url = "/AppIocco/personaje_confirm_delete.html"
+
+class PersonajeEditar(UpdateView):
+    model = Personaje
+    fields = ["nombre", "clase", "genero"]
+    success_url = "/AppIocco/personaje_list.html"

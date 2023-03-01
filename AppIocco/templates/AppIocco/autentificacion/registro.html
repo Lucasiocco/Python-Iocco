@@ -23,19 +23,25 @@
                         <li class="nav-item"><a class="nav-link" href="">Noticias</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Personajes' %}">Personajes</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Armas' %}">Armas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'Usuario' %}">Usuario</a></li>
+                        <li class="nav-item"><a class="nav-link" href="">Usuario</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
 
         <section>
-            <form action="" method="POST">
-                <input type="text" name="nombre">
-                <input type="text" name="contraseña">
-                <input type="text" name="email">
+            <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5">
+            <div class="col-lg-6">
+            <form class="mt-5" action="" method="POST"> {% csrf_token %}
+                <table>
+                    {{miFormulario.as_table}}
+                </table>
                 <input type="submit" value="Enviar">
             </form>
+            </div>
+            </div>
+            </div>
         </section>
 
     
